@@ -6,14 +6,14 @@ angularApp.config(function($routeProvider,$httpProvider) {
 
   .when('/',
   {
-    templateUrl: 'src/main.html',
+    templateUrl: 'pages/main.html',
     contoller: 'MainController',
     cotrollerAs : 'vm'
   })
 
   .when ('/footballdetails/:uniqId',
   {
-    templateUrl: 'src/footballdetails.html',
+    templateUrl: 'pages/footballdetails.html',
     controller: 'DetailsController'
   })
 });
