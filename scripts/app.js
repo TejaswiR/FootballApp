@@ -18,12 +18,12 @@ angularApp.config(function($routeProvider,$httpProvider) {
     controllerAs : 'tc'
   })
 
-  .when ('/fixture',
-  {
-    templateUrl: 'pages/fixture.html',
-    controller: 'FixContoller',
-    controllerAs: 'fc'
-  })
+  // .when ('/fixture',
+  // {
+  //   templateUrl: 'pages/fixture.html',
+  //   controller: 'FixController',
+  //   controllerAs: 'fc'
+  // })
 });
 
 
@@ -36,21 +36,53 @@ function($resource){
 
 }])
 
-angularApp.controller("TeamController",['$resource','$routeParams',
-  function($resource,$routeParams){
+angularApp.controller("TeamController",['$resource','$routeParams','FootballService',
+  function($resource,$routeParams,FootballService){
     var vm=this;
     var id = $routeParams.uniqId;
-    var team = $resource('http://api.football-data.org/v1/soccerseasons/'+id+'/leagueTable');
-    vm.teamResponse = team.get();
+    var teams = $resource('http://api.football-data.org/v1/soccerseasons/'+id+'/leagueTable');
+    vm.teamResponse = teams.get();
     console.log(vm.teamResponse);
-  }])
 
-angularApp.controller("FixController",['$resource','$routeParams',
-  function($resource,$routeParams){
-    var vm=this;
+  
+    var vm = this;
     var id = $routeParams.uniqId;
-    var fix = $resource('http://api.football-data.org/v1/soccerseasons/'+id+'/fixtures');
-    vm.fixResponse = fix.get();
-    console.log(vm.fixResponse);
+    // var league = $resource('http://api.football-data.org/v1/soccerseasons/'+id+'/teams');
+    var promise = FootballService.getTeamDetails(id);
+    promise.then(function(data){
+      vm.leaguDetails_data = data;
+
+    },function(err){
+
+    })
+    // console.log(vm.leagueResponse);
+  
   }]);
 
+
+angularApp.service('FootballService',['$resource','$q',function($resource,$q){
+
+  var vm = this;
+
+  vm.getTeamDetails = function(leagueId){
+    var leagueDetailsResource = $resource('http://api.football-data.org/v1/soccerseasons/'+ leagueId +'/teams');
+    var rsp = leagueDetailsResource.get();
+    var deferred = $q.defer();
+    rsp.$promise.then(function(data){
+      // console.log(data);
+      angular.forEach(data.teams,function(element,index){
+        console.log(element);
+        var self_link = element._links.self.href.split('/');
+        element.teamId = self_link[self_link.length - 1];
+        console.log(self_link);
+      });
+      console.log(data.teams);
+      deferred.resolve(data);
+    },function(err){
+      console.log(err);
+      deferred.reject(err);
+    })
+    return deferred.promise;
+}
+
+}]);

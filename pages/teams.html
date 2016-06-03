@@ -1,5 +1,5 @@
 <div class="container-fluid text-center">
-  <h1>Teams</h1>
+  <h1>Points</h1>
 </div>
 <div class="row" ng-controller="TeamController as tc">
  <div class="col-md-6 col-md-offset-3">
@@ -30,5 +30,48 @@
   </table>
    </div>
    </div>
+
+
+
+<div class="container-fluid text-center">
+  <h1>Teams</h1>
+</div>
+<div class="row" ng-controller="TeamController as tc">
+ <div class="col-md-6 col-md-offset-3">
+ <table class="table table-stripped table-hover">
+   
+<thead>
+    <tr>
+      <th>Code</th>
+      <th>        </th>
+      <th>TeamName</th>
+      <th>Shortcut</th>
+      <!-- <th>Played</th>
+      <th>Goals</th>
+      <th>Wins</th> -->
+      </tr>
+</thead>
+<tbody>
+    <tr ng-repeat='n in tc.leaguDetails_data.teams'>
+    <td>{{n.code}}</td>
+    <td><img src="{{n.crestUrl}}" height="40" width="40" alt=""></td>
+    <td><a href="#/fixture/{{n.id}}">{{n.name}}</a></td>
+    <td>{{n.shortName}}</td>
+    <!-- <td>{{n.playedGames}}</td>
+    <td>{{n.goals}}</td>
+    <td>{{n.wins}}</td> -->
+</tr>
+</tbody>
+  </table>
+   </div>
+   </div>
+
+
+   
+ 
+
+
+
+
  
 
