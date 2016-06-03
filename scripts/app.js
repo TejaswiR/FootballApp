@@ -18,12 +18,12 @@ angularApp.config(function($routeProvider,$httpProvider) {
     controllerAs : 'tc'
   })
 
-  // .when ('/fixture',
-  // {
-  //   templateUrl: 'pages/fixture.html',
-  //   controller: 'FixController',
-  //   controllerAs: 'fc'
-  // })
+  .when ('/fixture/:uniqId',
+  {
+    templateUrl: 'pages/fixture.html',
+    controller: 'PlayerController',
+    controllerAs: 'pc'
+  })
 });
 
 
@@ -85,4 +85,19 @@ angularApp.service('FootballService',['$resource','$q',function($resource,$q){
     return deferred.promise;
 }
 
+}]);
+
+angularApp.controller("PlayerController",['$resource','$routeParams','$http',
+function($resource,$routeParams,$http){
+  vm = this;
+  var id = $routeParams.uniqId;
+  var playerResource = $resource('http://api.football-data.org/v1/teams/'+ id +'/players');
+  vm.playerResponse = playerResource.get();
+  console.log(vm.playerResponse);
+
+  vm = this;
+  var id = $routeParams.uniqId;
+  var fixturesResource = $resource('http://api.football-data.org/v1/teams/'+ id +'/fixtures');
+  vm.fixturesResponse = fixturesResource.get();
+  console.log(vm.fixturesResponse);
 }]);
