@@ -11,10 +11,18 @@ angularApp.config(function($routeProvider,$httpProvider) {
     cotrollerAs : 'vm'
   })
 
-  .when ('/footballdetails/:uniqId',
+  .when ('/teams/:uniqId',
   {
-    templateUrl: 'pages/footballdetails.html',
-    controller: 'DetailsController'
+    templateUrl: 'pages/teams.html',
+    controller: 'TeamController',
+    controllerAs : 'tc'
+  })
+
+  .when ('/fixture',
+  {
+    templateUrl: 'pages/fixture.html',
+    controller: 'FixContoller',
+    controllerAs: 'fc'
   })
 });
 
@@ -26,4 +34,23 @@ function($resource){
    vm.footResponse = football.query();
    console.log(vm.footResponse);
 
-}]);
+}])
+
+angularApp.controller("TeamController",['$resource','$routeParams',
+  function($resource,$routeParams){
+    var vm=this;
+    var id = $routeParams.uniqId;
+    var team = $resource('http://api.football-data.org/v1/soccerseasons/'+id+'/leagueTable');
+    vm.teamResponse = team.get();
+    console.log(vm.teamResponse);
+  }])
+
+angularApp.controller("FixController",['$resource','$routeParams',
+  function($resource,$routeParams){
+    var vm=this;
+    var id = $routeParams.uniqId;
+    var fix = $resource('http://api.football-data.org/v1/soccerseasons/'+id+'/fixtures');
+    vm.fixResponse = fix.get();
+    console.log(vm.fixResponse);
+  }]);
+

@@ -1,0 +1,19 @@
+body{
+  /*background-color: #a3a375;*/
+  background-image: url('../images/football.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:100px;
+  width:90%;
+}
+h1,td{
+  color: #fff;
+}
+th{
+  color:#910808;
+  font-style: inherit;
+  font-size: 18px;
+}
+tr:hover{
+  background-color: rgb(14, 0, 0) !important;
+}
