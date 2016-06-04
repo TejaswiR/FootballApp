@@ -46,20 +46,14 @@
       <th>        </th>
       <th>TeamName</th>
       <th>Shortcut</th>
-      <!-- <th>Played</th>
-      <th>Goals</th>
-      <th>Wins</th> -->
       </tr>
 </thead>
 <tbody>
     <tr ng-repeat='n in tc.leaguDetails_data.teams'>
     <td>{{n.code}}</td>
     <td><img src="{{n.crestUrl}}" height="40" width="40" alt=""></td>
-    <td><a href="#/fixture/{{n.id}}">{{n.name}}</a></td>
+<td><a ng-href="#/players/{{n.teamId}}" ng-click="getTeamDetails(n.teamId)">{{n.name}}</a></td>
     <td>{{n.shortName}}</td>
-    <!-- <td>{{n.playedGames}}</td>
-    <td>{{n.goals}}</td>
-    <td>{{n.wins}}</td> -->
 </tr>
 </tbody>
   </table>

@@ -18,9 +18,9 @@ angularApp.config(function($routeProvider,$httpProvider) {
     controllerAs : 'tc'
   })
 
-  .when ('/fixture/:uniqId',
+  .when ('/players/:uniqId',
   {
-    templateUrl: 'pages/fixture.html',
+    templateUrl: 'pages/players.html',
     controller: 'PlayerController',
     controllerAs: 'pc'
   })
@@ -34,7 +34,7 @@ function($resource){
    vm.footResponse = football.query();
    console.log(vm.footResponse);
 
-}])
+}]);
 
 angularApp.controller("TeamController",['$resource','$routeParams','FootballService',
   function($resource,$routeParams,FootballService){
@@ -55,7 +55,6 @@ angularApp.controller("TeamController",['$resource','$routeParams','FootballServ
     },function(err){
 
     })
-    // console.log(vm.leagueResponse);
   
   }]);
 
@@ -69,7 +68,7 @@ angularApp.service('FootballService',['$resource','$q',function($resource,$q){
     var rsp = leagueDetailsResource.get();
     var deferred = $q.defer();
     rsp.$promise.then(function(data){
-      // console.log(data);
+      console.log(data);
       angular.forEach(data.teams,function(element,index){
         console.log(element);
         var self_link = element._links.self.href.split('/');
