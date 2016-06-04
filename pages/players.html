@@ -1,0 +1,55 @@
+<div class="container-fluid text-center">
+  <h1>Players</h1>
+</div>
+<div class="row" ng-controller="PlayerController as pc">
+ <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+ <table class="table table-stripped table-hover">
+   <thead>
+     <tr>
+       <th>JersyNo</th>
+       <th>Name</th>
+       <th>Poistion</th>
+       <th>Market Value</th>
+       <th>Nationality</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr ng-repeat= 'n in pc.playerResponse.players'>
+     <td>{{n.jerseyNumber}}</td>
+     <td>{{n.name}}</td>
+     <td>{{n.position}}</td>
+     <td>{{n.marketValue}}</td>
+     <td>{{n.nationality}}</td>
+     </tr>
+   </tbody>
+ </table>
+   </div>
+  </div>
+
+<div class="container-fluid text-center">
+  <h1>Fixtures</h1>
+</div>
+<div class="row" ng-controller="PlayerController as pc">
+ <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+ <table class="table table-stripped table-hover">
+   <thead>
+     <tr>
+       <th>Date</th>
+       <th>HomeTeam</th>
+       <th>AwayTeam</th>
+       <th>MatchDay</th>
+       <th>Status</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr ng-repeat= 'n in pc.fixturesResponse.fixtures'>
+     <td>{{n.date}}</td>
+     <td>{{n.homeTeamName}}</td>
+     <td>{{n.awayTeamName}}</td>
+     <td>{{n.matchday}}</td>
+     <td>{{n.status}}</td>
+     </tr>
+   </tbody>
+ </table>
+   </div>
+  </div>

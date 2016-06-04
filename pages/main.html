@@ -13,9 +13,10 @@
      </tr>
    </thead>
    <tbody>
-  <tr class="data" ng-repeat= "n in vm.footResponse">
+  <tr ng-repeat= "n in vm.footResponse">
+
    <td>{{n.league}}</td>
-   <td>{{n.caption}}</td>
+   <td><a href="#/teams/{{n.id}}">{{n.caption}}</a></td>
    <td>{{n.numberOfTeams}}</td>
    <td>{{n.numberOfGames}}</td>
   </tr>
