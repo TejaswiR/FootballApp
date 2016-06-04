@@ -17,15 +17,7 @@ angularApp.config(function($routeProvider,$httpProvider) {
     controller: 'TeamController',
     controllerAs : 'tc'
   })
-
-
-  .when ('/fixture',
-  {
-    templateUrl: 'pages/fixture.html',
-    controller: 'FixContoller',
-    controllerAs: 'fc'
-
-  .when ('/players/:uniqId',
+ .when ('/players/:uniqId',
   {
     templateUrl: 'pages/players.html',
     controller: 'PlayerController',
@@ -43,7 +35,7 @@ function($resource){
    console.log(vm.footResponse);
 
 
-}])
+}]);
 
 angularApp.controller("TeamController",['$resource','$routeParams',
   function($resource,$routeParams){
@@ -52,10 +44,7 @@ angularApp.controller("TeamController",['$resource','$routeParams',
     var team = $resource('http://api.football-data.org/v1/soccerseasons/'+id+'/leagueTable');
     vm.teamResponse = team.get();
     console.log(vm.teamResponse);
-  }])
-
-
-
+  }]);
 
 angularApp.controller("TeamController",['$resource','$routeParams','FootballService',
   function($resource,$routeParams,FootballService){
@@ -91,10 +80,10 @@ angularApp.service('FootballService',['$resource','$q',function($resource,$q){
     rsp.$promise.then(function(data){
       console.log(data);
       angular.forEach(data.teams,function(element,index){
-        console.log(element);
+        // console.log(element);
         var self_link = element._links.self.href.split('/');
         element.teamId = self_link[self_link.length - 1];
-        console.log(self_link);
+        // console.log(self_link);
       });
       console.log(data.teams);
       deferred.resolve(data);
