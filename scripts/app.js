@@ -55,17 +55,7 @@ angularApp.controller("TeamController",['$resource','$routeParams',
   }])
 
 
-angularApp.controller("FixController",['$resource','$routeParams',
-  function($resource,$routeParams){
-    var vm=this;
-    var id = $routeParams.uniqId;
-    var fix = $resource('http://api.football-data.org/v1/soccerseasons/'+id+'/fixtures');
-    vm.fixResponse = fix.get();
-    console.log(vm.fixResponse);
-  }]);
 
-
-}]);
 
 angularApp.controller("TeamController",['$resource','$routeParams','FootballService',
   function($resource,$routeParams,FootballService){
