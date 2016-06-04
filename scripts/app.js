@@ -18,19 +18,19 @@ angularApp.config(function($routeProvider,$httpProvider) {
     controllerAs : 'tc'
   })
 
-<<<<<<< HEAD
+
   .when ('/fixture',
   {
     templateUrl: 'pages/fixture.html',
     controller: 'FixContoller',
     controllerAs: 'fc'
-=======
+
   .when ('/players/:uniqId',
   {
     templateUrl: 'pages/players.html',
     controller: 'PlayerController',
     controllerAs: 'pc'
->>>>>>> master
+
   })
 });
 
@@ -42,7 +42,7 @@ function($resource){
    vm.footResponse = football.query();
    console.log(vm.footResponse);
 
-<<<<<<< HEAD
+
 }])
 
 angularApp.controller("TeamController",['$resource','$routeParams',
@@ -64,7 +64,7 @@ angularApp.controller("FixController",['$resource','$routeParams',
     console.log(vm.fixResponse);
   }]);
 
-=======
+
 }]);
 
 angularApp.controller("TeamController",['$resource','$routeParams','FootballService',
@@ -131,4 +131,4 @@ function($resource,$routeParams,$http){
   vm.fixturesResponse = fixturesResource.get();
   console.log(vm.fixturesResponse);
 }]);
->>>>>>> master
+
